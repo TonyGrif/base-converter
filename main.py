@@ -16,14 +16,14 @@ import argparse
 def main():
     """Run the decimal-to-binary program."""
     parser = argparse.ArgumentParser(
-            prog="Decimal to Binary Converter",
-            description="A python script to convert decimal integers and floats to their binary equivalent.",
-            usage="./main.py [-h] args [args ...]")
+        prog="Decimal to Binary Converter",
+        description="A python script to convert decimal integers and floats to their binary equivalent.",
+        usage="./main.py [-h] args [args ...]",
+    )
 
     parser.add_argument(
-            'decNum',
-            nargs='+',
-            help="Decimal number(s) to be converted to binary.")
+        "decNum", nargs="+", help="Decimal number(s) to be converted to binary."
+    )
 
     args = parser.parse_args()
 
