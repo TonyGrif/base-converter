@@ -5,10 +5,11 @@ import argparse
 def main():
     parser = argparse.ArgumentParser(
             prog="Decimal to Binary Converter",
-            description="A python script to convert decimal integers and floats to their binary equivalent.")
+            description="A python script to convert decimal integers and floats to their binary equivalent.",
+            usage="./main.py [-h] args [args ...]")
 
     parser.add_argument(
-            'decimals',
+            'decNum',
             nargs='+',
             help="Decimal number(s) to be converted to binary.")
 
