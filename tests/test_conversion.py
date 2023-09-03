@@ -12,9 +12,11 @@ class TestConverstion:
         pass
 
     def test_positiveDecimal(self):
-        assert Converter.convertToDecimal(0.5) == "0.1"
-        assert Converter.convertToDecimal(0.25) == "0.01"
-        assert Converter.convertToDecimal(0.75) == "0.11"
+        convert = Converter([0.5, 0.25, 0.75])
+
+        assert convert.conversions[0.5]["base-2"] == "0.1"
+        assert convert.conversions[0.25]["base-2"] == "0.01"
+        assert convert.conversions[0.75]["base-2"] == "0.11"
 
     def test_negativeDecimal(self):
         pass

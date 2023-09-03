@@ -1,24 +1,28 @@
-""" This module holds the Converter class."""
+"""This module holds the Converter class."""
 
 
 class Converter:
-    """ Responsible for converting a numerical input to its binary representation.
+    """Responsible for converting a numerical input to its binary representation.
 
     Attributes:
         decimals (list): Numbers to be converted to base-2. 
         binaries (list): Binary numbers post-conversion.
     """
 
-    def __init__(self) -> None:
-        """ Constructor for the Converter class.
+    def __init__(self, decimals: list) -> None:
+        """Constructor for the Converter class.
 
         Parameters:
-            
+            decimals (list): List of decimals to be converted.
         """
-        pass
+        self.conversions = {}
+
+        for num in decimals:
+            self.conversions[num] = {}
+            self.conversions[num]["base-2"] = self.convert_to_binary(num)
 
 
-    def convertToDecimal(self, num: int or float) -> str:
+    def convert_to_binary(self, num: int or float) -> str:
         """Converts an integer of float number to its binary representation.
 
         Parameters:
