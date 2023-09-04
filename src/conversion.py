@@ -38,4 +38,9 @@ class Converter:
         return None
 
     def output(self) -> str:
+        """Returns a formatted table to the user with the conversions.
+
+        Returns:
+            table (str): A string containing the table.
+        """
         pass
