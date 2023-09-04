@@ -31,8 +31,8 @@ class Converter:
         Returns:
             binStr (str): The binary string representation.
         """
-        bit = num * 2
+        # bit = num * 2
 
-        if remainder == 1
+        # if remainder == 1
 
         return None
