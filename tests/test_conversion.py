@@ -21,3 +21,6 @@ class TestConverstion:
 
     def test_negativeDecimal(self):
         pass
+
+    def test_output(self):
+        pass

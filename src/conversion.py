@@ -36,3 +36,6 @@ class Converter:
         # if remainder == 1
 
         return None
+
+    def output(self) -> str:
+        pass
