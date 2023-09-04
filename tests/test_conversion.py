@@ -4,6 +4,11 @@ import pytest
 from conversion import Converter 
 
 
+@pytest.fixture
+def conversions():
+    return Converter([0.5, 0.25, 0.75])
+
+
 class TestConverstion:
     def test_positiveInteger(self):
         pass
@@ -22,5 +27,6 @@ class TestConverstion:
     def test_negativeDecimal(self):
         pass
 
-    def test_output(self):
-        pass
+    def test_output(self, conversions):
+        assert "Base 10" in conversions.output() 
+        assert "Base 2" in conversions.output()

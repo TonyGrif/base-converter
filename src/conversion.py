@@ -43,4 +43,9 @@ class Converter:
         Returns:
             table (str): A string containing the table.
         """
-        pass
+        table = ""
+
+        table += "| Base 10 | Base 2 |"
+        table += "| ------- | ------ |"
+
+        return table
