@@ -2,10 +2,10 @@
 
 
 class Converter:
-    """Responsible for converting a numerical input to its binary representation.
+    """Responsible for converting a decimal input to binary.
 
     Attributes:
-        decimals (list): Numbers to be converted to base-2. 
+        decimals (list): Numbers to be converted to base-2.
         binaries (list): Binary numbers post-conversion.
     """
 
@@ -20,7 +20,6 @@ class Converter:
         for num in decimals:
             self.conversions[num] = {}
             self.conversions[num]["base-2"] = self.convert_to_binary(num)
-
 
     def convert_to_binary(self, num: int or float) -> str:
         """Converts an integer of float number to its binary representation.
@@ -38,4 +37,14 @@ class Converter:
         return None
 
     def output(self) -> str:
-        pass
+        """Returns a formatted table to the user with the conversions.
+
+        Returns:
+            table (str): A string containing the table.
+        """
+        table = ""
+
+        table += "| Base 10 | Base 2 | \n"
+        table += "| ------- | ------ | \n"
+
+        return table
