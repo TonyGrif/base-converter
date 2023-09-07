@@ -40,15 +40,30 @@ class Converter:
     def output(self) -> str:
         """Returns a formatted table to the user with the conversions.
 
+        This table will be formatted as such:
+
+        | Base-10 | Base-2 |
+        | ------- | ------ |
+        |  {Dec}  |  {Bin} |
+
         Returns:
             table (str): A string containing the table.
         """
         table = ""
 
-        table += "| " + "Base 10".center(8) + " | " + "Base 2".center(8) + " |" + " \n"
-        table += "| " + "-"*8 + " | " + "-"*8 + " |" + "\n"
+        table += "| " + "Base 10".center(8) + " |"
+        table += " Base 2".center(8) + " |" + " \n"
+
+        table += "| " + "-" * 8 + " | " + "-" * 8 + " |" + "\n"
 
         for count in range(len(self.conversions)):
-            table += "| " + str(self.conversions[count]["base-10"]).center(8) + " | " + str(self.conversions[count]["base-2"]).center(8) + " |" + "\n"
+            table += (
+                "| "
+                + str(self.conversions[count]["base-10"]).center(8)
+                + " | "
+                + str(self.conversions[count]["base-2"]).center(8)
+                + " |"
+                + "\n"
+            )
 
         return table
