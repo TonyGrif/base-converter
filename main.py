@@ -13,6 +13,9 @@ This file can be run as `./main.py [-h] args [args ...]`
 import argparse
 
 
+from src.conversion import Converter
+
+
 def main():
     """Run the decimal-to-binary program."""
     parser = argparse.ArgumentParser(
@@ -27,7 +30,9 @@ def main():
 
     args = parser.parse_args()
 
-    print(args)
+    converter = Converter(args.decNum)
+
+    print(converter.output())
 
 
 if __name__ == "__main__":

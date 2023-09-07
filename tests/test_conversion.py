@@ -5,7 +5,7 @@ from conversion import Converter
 
 
 @pytest.fixture
-def conversions():
+def converter():
     return Converter([0.5, 0.25, 0.75])
 
 
@@ -27,6 +27,12 @@ class TestConverstion:
     def test_negativeDecimal(self):
         pass
 
-    def test_output(self, conversions):
-        assert "Base 10" in conversions.output() 
-        assert "Base 2" in conversions.output()
+    def test_output(self, converter):
+        assert "Base 10" in converter.output() 
+        assert "Base 2" in converter.output()
+
+        for count in range(len(converter.conversions)):
+            assert str(converter.conversions[count]["base-10"]) in converter.output()
+            assert str(converter.conversions[count]["base-2"]) in converter.output()
+
+

@@ -5,8 +5,8 @@ class Converter:
     """Responsible for converting a decimal input to binary.
 
     Attributes:
-        decimals (list): Numbers to be converted to base-2.
-        binaries (list): Binary numbers post-conversion.
+        conversions (dictionary): A dictionary of conversions.
+            This contains [base-10] and [base-2] fields.
     """
 
     def __init__(self, decimals: list) -> None:
@@ -17,9 +17,10 @@ class Converter:
         """
         self.conversions = {}
 
-        for num in decimals:
-            self.conversions[num] = {}
-            self.conversions[num]["base-2"] = self.convert_to_binary(num)
+        for count, num in enumerate(decimals):
+            self.conversions[count] = {}
+            self.conversions[count]["base-10"] = num
+            self.conversions[count]["base-2"] = self.convert_to_binary(num)
 
     def convert_to_binary(self, num: int or float) -> str:
         """Converts an integer of float number to its binary representation.
@@ -39,12 +40,30 @@ class Converter:
     def output(self) -> str:
         """Returns a formatted table to the user with the conversions.
 
+        This table will be formatted as such:
+
+        | Base-10 | Base-2 |
+        | ------- | ------ |
+        |  {Dec}  |  {Bin} |
+
         Returns:
             table (str): A string containing the table.
         """
         table = ""
 
-        table += "| Base 10 | Base 2 | \n"
-        table += "| ------- | ------ | \n"
+        table += "| " + "Base 10".center(8) + " |"
+        table += " Base 2".center(8) + " |" + " \n"
+
+        table += "| " + "-" * 8 + " | " + "-" * 8 + " |" + "\n"
+
+        for count in range(len(self.conversions)):
+            table += (
+                "| "
+                + str(self.conversions[count]["base-10"]).center(8)
+                + " | "
+                + str(self.conversions[count]["base-2"]).center(8)
+                + " |"
+                + "\n"
+            )
 
         return table
