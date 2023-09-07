@@ -44,7 +44,7 @@ class Converter:
         """
         table = ""
 
-        table += "| Base 10 | Base 2 | \n"
-        table += "| ------- | ------ | \n"
+        table += "| " + "Base 10".center(8) + " | " + "Base 2".center(8) + " | " + " \n"
+        table += "| " + "-"*8 + " | " + "-"*8 + " | " + "\n"
 
         return table
