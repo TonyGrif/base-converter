@@ -16,14 +16,13 @@ class Converter:
             decimals (list): List of decimals to be converted.
         """
         self._length = 8
-        
+
         self.conversions = {}
 
         for count, num in enumerate(decimals):
             self.conversions[count] = {}
             self.conversions[count]["base-10"] = num
             self.conversions[count]["base-2"] = self.convert_to_binary(num)
-
 
     def convert_to_binary(self, num: int or float) -> str:
         """Converts an integer of float number to its binary representation.
@@ -32,29 +31,28 @@ class Converter:
             num (int or float): The number to be converted.
 
         Returns:
-            binStr (str): The binary string representation.
+            bin_str (str): The binary string representation.
         """
-        binStr = ""
+        bin_str = ""
 
         if float(num) < 1:
-            binStr += "0."
+            bin_str += "0."
 
         bit = float(num)
 
-        for x in range(self._length):
+        for counter in range(self._length):
             bit = bit * 2
-            print(str(bit) + "\n")
 
             if bit > 1:
-                binStr += '1'
+                bin_str += "1"
                 bit = bit - 1
             elif bit == 1:
-                binStr += '1'
-                return binStr
+                bin_str += "1"
+                return bin_str
             else:
-                binStr += '0'
+                bin_str += "0"
 
-        return binStr
+        return bin_str
 
     def output(self) -> str:
         """Returns a formatted table to the user with the conversions.
