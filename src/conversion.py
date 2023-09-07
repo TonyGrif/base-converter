@@ -45,10 +45,10 @@ class Converter:
         """
         table = ""
 
-        table += "| " + "Base 10".center(8) + " | " + "Base 2".center(8) + " | " + " \n"
-        table += "| " + "-"*8 + " | " + "-"*8 + " | " + "\n"
+        table += "| " + "Base 10".center(8) + " | " + "Base 2".center(8) + " |" + " \n"
+        table += "| " + "-"*8 + " | " + "-"*8 + " |" + "\n"
 
-        for conversion in self.conversions:
-            pass
+        for count in range(len(self.conversions)):
+            table += "| " + str(self.conversions[count]["base-10"]).center(8) + " | " + str(self.conversions[count]["base-2"]).center(8) + " |" + "\n"
 
         return table
