@@ -33,5 +33,6 @@ class TestConverstion:
 
         for count in range(len(converter.conversions)):
             assert str(converter.conversions[count]["base-10"]) in converter.output()
+            assert str(converter.conversions[count]["base-2"]) in converter.output()
 
 
