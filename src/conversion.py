@@ -68,8 +68,8 @@ class Converter:
         """
         table = ""
 
-        table += "| " + "Base 10".center(self._length) + " |"
-        table += " Base 2".center(self._length) + " |" + " \n"
+        table += "| " + "Base 10".center(self._length) + " | "
+        table += "Base 2".center(self._length) + " |" + " \n"
 
         table += "| " + "-" * self._length + " | " + "-" * self._length + " |" + "\n"
 
