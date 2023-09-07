@@ -15,12 +15,15 @@ class Converter:
         Parameters:
             decimals (list): List of decimals to be converted.
         """
+        self._length = 8
+        
         self.conversions = {}
 
         for count, num in enumerate(decimals):
             self.conversions[count] = {}
             self.conversions[count]["base-10"] = num
             self.conversions[count]["base-2"] = self.convert_to_binary(num)
+
 
     def convert_to_binary(self, num: int or float) -> str:
         """Converts an integer of float number to its binary representation.
@@ -31,11 +34,27 @@ class Converter:
         Returns:
             binStr (str): The binary string representation.
         """
-        # bit = num * 2
+        binStr = ""
 
-        # if remainder == 1
+        if float(num) < 1:
+            binStr += "0."
 
-        return None
+        bit = float(num)
+
+        for x in range(self._length):
+            bit = bit * 2
+            print(str(bit) + "\n")
+
+            if bit > 1:
+                binStr += '1'
+                bit = bit - 1
+            elif bit == 1:
+                binStr += '1'
+                return binStr
+            else:
+                binStr += '0'
+
+        return binStr
 
     def output(self) -> str:
         """Returns a formatted table to the user with the conversions.
@@ -51,17 +70,17 @@ class Converter:
         """
         table = ""
 
-        table += "| " + "Base 10".center(8) + " |"
-        table += " Base 2".center(8) + " |" + " \n"
+        table += "| " + "Base 10".center(self._length) + " |"
+        table += " Base 2".center(self._length) + " |" + " \n"
 
-        table += "| " + "-" * 8 + " | " + "-" * 8 + " |" + "\n"
+        table += "| " + "-" * self._length + " | " + "-" * self._length + " |" + "\n"
 
         for count in range(len(self.conversions)):
             table += (
                 "| "
-                + str(self.conversions[count]["base-10"]).center(8)
+                + str(self.conversions[count]["base-10"]).center(self._length)
                 + " | "
-                + str(self.conversions[count]["base-2"]).center(8)
+                + str(self.conversions[count]["base-2"]).center(self._length)
                 + " |"
                 + "\n"
             )
