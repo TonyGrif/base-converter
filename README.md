@@ -15,8 +15,10 @@ Invalid input will not be checked and will result in undefined behavior.
 ## Sample Execution & Output
 When this program is run with `./main.py 0.25 -0.142857 0.75`, the following output will be created:
 
+```
 |   Base 10   |    Base 2   | 
 | ----------- | ----------- |
 |     0.25    |     0.01    |
 |  -0.142857  | -0.00100100 |
 |     0.75    |     0.11    |
+```
