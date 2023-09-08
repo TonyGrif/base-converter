@@ -69,19 +69,20 @@ class Converter:
         Returns:
             table (str): A string containing the table.
         """
+        spacing = self._length + 3
         table = ""
 
-        table += "| " + "Base 10".center(self._length) + " | "
-        table += "Base 2".center(self._length) + " |" + " \n"
+        table += "| " + "Base 10".center(spacing) + " | "
+        table += "Base 2".center(spacing) + " |" + " \n"
 
-        table += "| " + "-" * self._length + " | " + "-" * self._length + " |" + "\n"
+        table += "| " + "-" * spacing + " | " + "-" * spacing + " |" + "\n"
 
         for count in range(len(self.conversions)):
             table += (
                 "| "
-                + str(self.conversions[count]["base-10"]).center(self._length)
+                + str(self.conversions[count]["base-10"]).center(spacing)
                 + " | "
-                + str(self.conversions[count]["base-2"]).center(self._length)
+                + str(self.conversions[count]["base-2"]).center(spacing)
                 + " |"
                 + "\n"
             )
