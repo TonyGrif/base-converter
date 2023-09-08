@@ -15,6 +15,8 @@ class Converter:
         Parameters:
             decimals (list): List of decimals to be converted.
         """
+        self._length = 8
+
         self.conversions = {}
 
         for count, num in enumerate(decimals):
@@ -29,13 +31,28 @@ class Converter:
             num (int or float): The number to be converted.
 
         Returns:
-            binStr (str): The binary string representation.
+            bin_str (str): The binary string representation.
         """
-        # bit = num * 2
+        bin_str = ""
 
-        # if remainder == 1
+        if float(num) < 1:
+            bin_str += "0."
 
-        return None
+        bit = float(num)
+
+        for counter in range(self._length):
+            bit = bit * 2
+
+            if bit > 1:
+                bin_str += "1"
+                bit = bit - 1
+            elif bit == 1:
+                bin_str += "1"
+                return bin_str
+            else:
+                bin_str += "0"
+
+        return bin_str
 
     def output(self) -> str:
         """Returns a formatted table to the user with the conversions.
@@ -51,17 +68,17 @@ class Converter:
         """
         table = ""
 
-        table += "| " + "Base 10".center(8) + " |"
-        table += " Base 2".center(8) + " |" + " \n"
+        table += "| " + "Base 10".center(self._length) + " | "
+        table += "Base 2".center(self._length) + " |" + " \n"
 
-        table += "| " + "-" * 8 + " | " + "-" * 8 + " |" + "\n"
+        table += "| " + "-" * self._length + " | " + "-" * self._length + " |" + "\n"
 
         for count in range(len(self.conversions)):
             table += (
                 "| "
-                + str(self.conversions[count]["base-10"]).center(8)
+                + str(self.conversions[count]["base-10"]).center(self._length)
                 + " | "
-                + str(self.conversions[count]["base-2"]).center(8)
+                + str(self.conversions[count]["base-2"]).center(self._length)
                 + " |"
                 + "\n"
             )
