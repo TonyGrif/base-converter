@@ -25,7 +25,7 @@ class Converter:
             self.conversions[count]["base-2"] = self.convert_to_binary(num)
 
     def convert_to_binary(self, num: int or float) -> str:
-        """Converts an integer of float number to its binary representation.
+        """Converts a decimal number to its binary representation.
 
         Parameters:
             num (int or float): The number to be converted.
@@ -38,12 +38,12 @@ class Converter:
         if float(num) < 0:
             bin_str += "-0."
             num = abs(float(num))
-        elif float(num) < 1:
+        else:
             bin_str += "0."
 
         bit = float(num)
 
-        for counter in range(self._length):
+        for _ in range(self._length):
             bit = bit * 2
 
             if bit > 1:
