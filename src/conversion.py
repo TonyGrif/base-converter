@@ -35,7 +35,10 @@ class Converter:
         """
         bin_str = ""
 
-        if float(num) < 1:
+        if float(num) < 0:
+            bin_str += "-0."
+            num = abs(float(num))
+        elif float(num) < 1:
             bin_str += "0."
 
         bit = float(num)
