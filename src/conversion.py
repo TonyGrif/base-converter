@@ -17,6 +17,7 @@ class Converter:
         """
         self._length = 8
 
+        # TODO: structure this better.
         self.conversions = {}
 
         for count, num in enumerate(decimals):
@@ -25,7 +26,7 @@ class Converter:
             self.conversions[count]["base-2"] = self.convert_to_binary(num)
 
     def convert_to_binary(self, num: int or float) -> str:
-        """Converts an integer of float number to its binary representation.
+        """Converts a decimal number to its binary representation.
 
         Parameters:
             num (int or float): The number to be converted.
@@ -38,12 +39,12 @@ class Converter:
         if float(num) < 0:
             bin_str += "-0."
             num = abs(float(num))
-        elif float(num) < 1:
+        else:
             bin_str += "0."
 
         bit = float(num)
 
-        for counter in range(self._length):
+        for _ in range(self._length):
             bit = bit * 2
 
             if bit > 1:
@@ -69,19 +70,21 @@ class Converter:
         Returns:
             table (str): A string containing the table.
         """
+        spacing = self._length + 3
         table = ""
 
-        table += "| " + "Base 10".center(self._length) + " | "
-        table += "Base 2".center(self._length) + " |" + " \n"
+        table += "| " + "Base 10".center(spacing) + " | "
+        table += "Base 2".center(spacing) + " |" + " \n"
 
-        table += "| " + "-" * self._length + " | " + "-" * self._length + " |" + "\n"
+        table += "| " + "-" * spacing + " | " + "-" * spacing + " |" + "\n"
 
+        # TODO: utilize enumerate after cleaning up dictionary structure.
         for count in range(len(self.conversions)):
             table += (
                 "| "
-                + str(self.conversions[count]["base-10"]).center(self._length)
+                + str(self.conversions[count]["base-10"]).center(spacing)
                 + " | "
-                + str(self.conversions[count]["base-2"]).center(self._length)
+                + str(self.conversions[count]["base-2"]).center(spacing)
                 + " |"
                 + "\n"
             )

@@ -20,7 +20,7 @@ def main():
     """Run the decimal-to-binary program."""
     parser = argparse.ArgumentParser(
         prog="Decimal to Binary Converter",
-        description="A python script to convert decimal integers and floats to their binary equivalent.",
+        description="Script to convert decimal numbers to binary.",
         usage="./main.py [-h] args [args ...]",
     )
 
