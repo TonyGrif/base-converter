@@ -17,6 +17,7 @@ class Converter:
         """
         self._length = 8
 
+        # TODO: structure this better.
         self.conversions = {}
 
         for count, num in enumerate(decimals):
@@ -77,6 +78,7 @@ class Converter:
 
         table += "| " + "-" * spacing + " | " + "-" * spacing + " |" + "\n"
 
+        # TODO: utilize enumerate after cleaning up dictionary structure.
         for count in range(len(self.conversions)):
             table += (
                 "| "
