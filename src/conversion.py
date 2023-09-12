@@ -35,12 +35,44 @@ class Converter:
             bin_str (str): The binary string representation.
         """
         bin_str = ""
-
+        int_num = None
+        dec_num = None
+        
         if float(num) < 0:
-            bin_str += "-0."
+            bin_str += "-"
             num = abs(float(num))
         else:
+            pass
+
+        if float(num) >= 1:
+            str_num = str(num).split('.')
+
+            int_num = str_num[0]
+            bin_str += self._int_part_to_binary(int(int_num))
+
+            try:
+                dec_num = str_num[1]
+            except IndexError:
+                pass
+
+            return bin_str
+        else:
+            # Run just decimal conversion
             bin_str += "0."
+            bin_str += self._decimal_part_to_binary(num)
+
+            return bin_str
+
+    def _decimal_part_to_binary(self, num: float) -> str:
+        """Convert decimal point number to binary.
+
+        Parameters:
+            num (float): The number to be converted.
+
+        Returns:
+            bin_str (str): The binary string representation.
+        """
+        bin_str = ""
 
         bit = float(num)
 
@@ -57,6 +89,33 @@ class Converter:
                 bin_str += "0"
 
         return bin_str
+
+    def _int_part_to_binary(self, num: int) -> str:
+        """Convert integer part of a number to binary.
+
+        Parameters:
+            num (int): The number to be converted.
+
+        Returns:
+            bin_str (str): The binary string representation.
+        """
+        bin_str = ""
+        bit = int(num)
+
+        for _ in range(self._length):
+            rem = bit % 2
+
+            if rem == 1:
+                bin_str += "1"
+            else:
+                bin_str += "0"
+
+            bit = bit // 2
+
+            if bit < 1:
+                break
+
+        return bin_str[::-1]
 
     def output(self) -> str:
         """Returns a formatted table to the user with the conversions.
