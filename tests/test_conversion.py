@@ -15,7 +15,7 @@ class TestConverstion:
 
     def test_negativeInteger(self):
         pass
-        
+
     def test_positiveDecimal(self, converter):
         assert converter.conversions[0]["base-2"] == "0.1"
         assert converter.conversions[1]["base-2"] == "0.01"
@@ -38,6 +38,6 @@ class TestConverstion:
         assert "Base 10" in converter.output()
         assert "Base 2" in converter.output()
 
-        for count in range(len(converter.conversions)):
-            assert str(converter.conversions[count]["base-10"]) in converter.output()
-            assert str(converter.conversions[count]["base-2"]) in converter.output()
+        for conversion in converter.conversions:
+            assert str(conversion["base-10"]) in converter.output()
+            assert str(conversion["base-2"]) in converter.output()
