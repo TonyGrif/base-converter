@@ -41,7 +41,13 @@ class TestConverstion:
         assert intConverter.conversions[4]["base-2"] == "10001"
 
     def test_negativeInteger(self):
-        pass
+        converter = Converter([-1, -2, -10, -16, -17])
+
+        assert converter.conversions[0]["base-2"] == "-1"
+        assert converter.conversions[1]["base-2"] == "-10"
+        assert converter.conversions[2]["base-2"] == "-1010"
+        assert converter.conversions[3]["base-2"] == "-10000"
+        assert converter.conversions[4]["base-2"] == "-10001"
 
     def test_output(self, converter, intConverter):
         assert "Base 10" in converter.output()
