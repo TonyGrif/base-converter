@@ -38,7 +38,7 @@ class Converter:
 
         if float(num) < 0:
             bin_str += "-"
-            num = abs(float(num))
+            num = abs(num)
         else:
             pass
 
@@ -51,6 +51,10 @@ class Converter:
             # TODO: Handle floating point number
             try:
                 dec_num = str_num[1]
+                dec_num = float("." + dec_num)
+
+                bin_str += "."
+                bin_str += self._decimal_part_to_binary(float(dec_num))
             except IndexError:
                 pass
 
