@@ -43,11 +43,17 @@ class TestConverstion:
     def test_negativeInteger(self):
         pass
 
-    def test_output(self, converter):
+    def test_output(self, converter, intConverter):
         assert "Base 10" in converter.output()
         assert "Base 2" in converter.output()
+
+        assert "Base 10" in intConverter.output()
+        assert "Base 2" in intConverter.output()
 
         for conversion in converter.conversions:
             assert str(conversion["base-10"]) in converter.output()
             assert str(conversion["base-2"]) in converter.output()
 
+        for conversion in intConverter.conversions:
+            assert str(conversion["base-10"]) in intConverter.output()
+            assert str(conversion["base-2"]) in intConverter.output()
