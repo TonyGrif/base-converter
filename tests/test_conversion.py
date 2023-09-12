@@ -49,6 +49,16 @@ class TestConverstion:
         assert converter.conversions[3]["base-2"] == "-10000"
         assert converter.conversions[4]["base-2"] == "-10001"
 
+    def test_floating_point(self):
+        converter = Converter([1.5, 2.25, 10.75, -16.5, -17.25])
+
+        assert converter.conversions[0]["base-2"] == "1.1"
+        assert converter.conversions[1]["base-2"] == "10.01"
+        assert converter.conversions[2]["base-2"] == "1010.11"
+
+        assert converter.conversions[3]["base-2"] == "-10000.1"
+        assert converter.conversions[4]["base-2"] == "-10001.01"
+
     def test_output(self, converter, intConverter):
         assert "Base 10" in converter.output()
         assert "Base 2" in converter.output()
