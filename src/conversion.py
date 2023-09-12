@@ -5,7 +5,7 @@ class Converter:
     """Responsible for converting a decimal input to binary.
 
     Attributes:
-        conversions (dictionary): A dictionary of conversions.
+        conversions (list): A list of dictionaries of conversions.
             This contains [base-10] and [base-2] fields.
     """
 
@@ -15,15 +15,15 @@ class Converter:
         Parameters:
             decimals (list): List of decimals to be converted.
         """
-        self._length = 8
+        self._length = 8 # Max number of digits
 
-        # TODO: structure this better.
-        self.conversions = {}
+        self.conversions = [] 
 
         for count, num in enumerate(decimals):
-            self.conversions[count] = {}
-            self.conversions[count]["base-10"] = num
-            self.conversions[count]["base-2"] = self.convert_to_binary(num)
+            conversion = {}
+            conversion["base-10"] = num
+            conversion["base-2"] = self.convert_to_binary(num)
+            self.conversions.append(conversion)
 
     def convert_to_binary(self, num: int or float) -> str:
         """Converts a decimal number to its binary representation.
