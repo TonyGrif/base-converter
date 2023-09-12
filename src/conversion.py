@@ -48,7 +48,6 @@ class Converter:
             int_num = str_num[0]
             bin_str += self._int_part_to_binary(int(int_num))
 
-            # TODO: Handle floating point number
             try:
                 dec_num = str_num[1]
                 dec_num = float("." + dec_num)
