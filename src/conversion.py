@@ -15,11 +15,11 @@ class Converter:
         Parameters:
             decimals (list): List of decimals to be converted.
         """
-        self._length = 8 # Max number of digits
+        self._length = 8  # Max number of digits
 
-        self.conversions = [] 
+        self.conversions = []
 
-        for count, num in enumerate(decimals):
+        for _, num in enumerate(decimals):
             conversion = {}
             conversion["base-10"] = num
             conversion["base-2"] = self.convert_to_binary(num)
@@ -78,13 +78,12 @@ class Converter:
 
         table += "| " + "-" * spacing + " | " + "-" * spacing + " |" + "\n"
 
-        # TODO: utilize enumerate after cleaning up dictionary structure.
-        for count in range(len(self.conversions)):
+        for conversion in self.conversions:
             table += (
                 "| "
-                + str(self.conversions[count]["base-10"]).center(spacing)
+                + str(conversion["base-10"]).center(spacing)
                 + " | "
-                + str(self.conversions[count]["base-2"]).center(spacing)
+                + str(conversion["base-2"]).center(spacing)
                 + " |"
                 + "\n"
             )
