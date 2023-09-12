@@ -35,9 +35,7 @@ class Converter:
             bin_str (str): The binary string representation.
         """
         bin_str = ""
-        int_num = None
-        dec_num = None
-        
+
         if float(num) < 0:
             bin_str += "-"
             num = abs(float(num))
@@ -45,11 +43,12 @@ class Converter:
             pass
 
         if float(num) >= 1:
-            str_num = str(num).split('.')
+            str_num = str(num).split(".")
 
             int_num = str_num[0]
             bin_str += self._int_part_to_binary(int(int_num))
 
+            # TODO: Handle floating point number
             try:
                 dec_num = str_num[1]
             except IndexError:
@@ -100,19 +99,19 @@ class Converter:
             bin_str (str): The binary string representation.
         """
         bin_str = ""
-        bit = int(num)
+        integer = int(num)
 
         for _ in range(self._length):
-            rem = bit % 2
+            rem = integer % 2
 
             if rem == 1:
                 bin_str += "1"
             else:
                 bin_str += "0"
 
-            bit = bit // 2
+            integer = integer // 2
 
-            if bit < 1:
+            if integer < 1:
                 break
 
         return bin_str[::-1]
