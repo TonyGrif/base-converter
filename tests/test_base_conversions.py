@@ -28,8 +28,19 @@ class TestBaseConversions:
         assert sixty_convert.conversions[2]["base-60"] == "0.45"
         assert sixty_convert.conversions[3]["base-60"] == "0.48"
 
-    def test_negative_decimal(self):
-        pass
+    def test_negative_decimal(self, dec_nums):
+        #TODO: asserts for eight
+
+        neg_nums = []
+        for num in dec_nums:
+            neg_nums.append(-num)
+
+        neg_sixty = Converter(60, neg_nums)
+
+        assert neg_sixty.conversions[0]["base-60"] == "-0.30"
+        assert neg_sixty.conversions[1]["base-60"] == "-0.15"
+        assert neg_sixty.conversions[2]["base-60"] == "-0.45"
+        assert neg_sixty.conversions[3]["base-60"] == "-0.48"
 
     def test_positive_integer(self):
         pass

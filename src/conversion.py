@@ -44,7 +44,11 @@ class Converter:
 
         if float(num) < 0:
             base_str += "-"
-            num = abs(num)
+
+            if float(num).is_integer():
+                num = abs(int(num))
+            else:
+                num = abs(float(num))
         else:
             pass
 
