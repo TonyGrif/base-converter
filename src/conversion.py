@@ -139,9 +139,9 @@ class Converter:
 
         This table will be formatted as such:
 
-        | Base-10 | Base-2 |
+        | Base-10 | Base-X |
         | ------- | ------ |
-        |  {Dec}  |  {Bin} |
+        |  {Dec}  |  {Num} |
 
         Returns:
             table (str): A string containing the table.
