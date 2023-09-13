@@ -7,7 +7,7 @@ class Converter:
     Attributes:
         base (int): The base to convert to.
         conversions (list): A list of dictionaries of conversions.
-            This contains [base-10] and [base-2] fields.
+            This contains [base-10] and [base-{x}] fields.
     """
 
     def __init__(self, base: int, decimals: list) -> None:
@@ -148,7 +148,7 @@ class Converter:
         table = ""
 
         table += "| " + "Base 10".center(spacing) + " | "
-        table += "Base 2".center(spacing) + " |" + " \n"
+        table += f"Base {self.base}".center(spacing) + " |" + " \n"
 
         table += "| " + "-" * spacing + " | " + "-" * spacing + " |" + "\n"
 
@@ -157,7 +157,7 @@ class Converter:
                 "| "
                 + str(conversion["base-10"]).center(spacing)
                 + " | "
-                + str(conversion["base-2"]).center(spacing)
+                + str(conversion[base_val]).center(spacing)
                 + " |"
                 + "\n"
             )
