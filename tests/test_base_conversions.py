@@ -6,7 +6,7 @@ from conversion import Converter
 
 @pytest.fixture
 def dec_nums():
-    return [0.5, 0.75, 0.8, 0.16666]
+    return [0.5, 0.25, 0.75, 0.8]
 
 
 @pytest.fixture
@@ -20,8 +20,13 @@ def sixty_convert(dec_nums):
 
 
 class TestBaseConversions:
-    def test_positive_decimal(self, eight_convert):
-        pass
+    def test_positive_decimal(self, eight_convert, sixty_convert):
+        # TODO: asserts for eight
+
+        assert sixty_convert.conversions[0]["base-60"] == "0.30"
+        assert sixty_convert.conversions[1]["base-60"] == "0.15"
+        assert sixty_convert.conversions[2]["base-60"] == "0.45"
+        assert sixty_convert.conversions[3]["base-60"] == "0.48"
 
     def test_negative_decimal(self):
         pass
@@ -35,5 +40,15 @@ class TestBaseConversions:
     def test_floating_point(self):
         pass
 
-    def test_output(self):
-        pass
+    def test_output(self, eight_convert, sixty_convert):
+        # TODO: asserts for eight
+
+        sixty_str = sixty_convert.output()
+        assert "Base 10" in sixty_str
+        assert "Base 60" in sixty_str
+
+        for conversion in sixty_convert.conversions:
+            assert str(conversion["base-10"]) in sixty_str
+            assert str(conversion["base-60"]) in sixty_str
+
+

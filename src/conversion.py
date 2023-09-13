@@ -7,7 +7,7 @@ class Converter:
     Attributes:
         base (int): The base to convert to.
         conversions (list): A list of dictionaries of conversions.
-            This contains [base-10] and [base-2] fields.
+            This contains [base-10] and [base-{x}] fields.
     """
 
     def __init__(self, base: int, decimals: list) -> None:
@@ -20,13 +20,14 @@ class Converter:
         self._length = 8  # Max number of digits
 
         self.base = int(base)
+        base_val = "base-" + str(base)
 
         self.conversions = []
 
         for _, num in enumerate(decimals):
             conversion = {}
             conversion["base-10"] = num
-            conversion["base-2"] = self.convert_to_base(self.base, num)
+            conversion[base_val] = self.convert_to_base(self.base, num)
             self.conversions.append(conversion)
 
     def convert_to_base(self, base: int, num: int or float) -> str:
@@ -58,7 +59,7 @@ class Converter:
                 dec_num = float("." + dec_num)
 
                 base_str += "."
-                base_str += self._decimal_part_to_binary(float(dec_num))
+                base_str += self._decimal_part_to_base(self.base, float(dec_num))
             except IndexError:
                 pass
 
@@ -66,36 +67,42 @@ class Converter:
         else:
             # Run just decimal conversion
             base_str += "0."
-            base_str += self._decimal_part_to_binary(num)
+            base_str += self._decimal_part_to_base(self.base, float(num))
 
             return base_str
 
-    def _decimal_part_to_binary(self, num: float) -> str:
-        """Convert decimal point number to binary.
+    def _decimal_part_to_base(self, base: int,  num: float) -> str:
+        """Convert decimal point number to base.
 
         Parameters:
+            base (int): The base to convert to.
             num (float): The number to be converted.
 
         Returns:
-            bin_str (str): The binary string representation.
+            base_str (str): The base string representation.
         """
-        bin_str = ""
+        base_str = ""
 
         bit = float(num)
 
         for _ in range(self._length):
-            bit = bit * 2
+            bit = bit * base
 
             if bit > 1:
-                bin_str += "1"
-                bit = bit - 1
-            elif bit == 1:
-                bin_str += "1"
-                return bin_str
-            else:
-                bin_str += "0"
+                split = str(bit).split(".")
 
-        return bin_str
+                base_str += split[0]
+                bit = bit - int(split[0])
+
+                if bit == 0:
+                    return base_str
+            elif bit == 1:
+                base_str += "1"
+                return base_str
+            else:
+                base_str += "0"
+
+        return base_str
 
     def _int_part_to_binary(self, num: int) -> str:
         """Convert integer part of a number to binary.
@@ -136,11 +143,12 @@ class Converter:
         Returns:
             table (str): A string containing the table.
         """
+        base_val = "base-" + str(self.base)
         spacing = self._length + 3
         table = ""
 
         table += "| " + "Base 10".center(spacing) + " | "
-        table += "Base 2".center(spacing) + " |" + " \n"
+        table += f"Base {self.base}".center(spacing) + " |" + " \n"
 
         table += "| " + "-" * spacing + " | " + "-" * spacing + " |" + "\n"
 
@@ -149,7 +157,7 @@ class Converter:
                 "| "
                 + str(conversion["base-10"]).center(spacing)
                 + " | "
-                + str(conversion["base-2"]).center(spacing)
+                + str(conversion[base_val]).center(spacing)
                 + " |"
                 + "\n"
             )
