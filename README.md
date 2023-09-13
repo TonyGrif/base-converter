@@ -5,8 +5,7 @@ A python script to convert decimal (base-10) integers and floats to their base-x
 * [Python 3.11](https://www.python.org/)
 
 ## Running Instructions
-This program can be run with the following command: `./main.py [args]` in which args is a non-zero base number and a 
-non-zero amount of real numbers. The real-numbers input is limited to -1 (exclusive) to 1 (exclusive). 
+This program can be run with the following command: `./main.py [args]` in which args is a non-zero base number and a non-zero amount of real numbers. The real-numbers input is limited to -1 (exclusive) to 1 (exclusive). 
 
 If this program is run without any arguments, the following usage error message will be outputted:
 `usage: ./main.py [-h] args [args ...]`

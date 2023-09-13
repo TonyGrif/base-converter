@@ -2,12 +2,12 @@
 
 
 class Converter:
-    """Responsible for converting a base-10 input to the base given.
+    """Responsible for converting a base-10 input to the new base given.
 
     Attributes:
         base (int): The base to convert to.
         conversions (list): A list of dictionaries of conversions.
-            This contains [base-10] and [base-{x}] fields.
+            This contains [base-10] and [base-{base}] fields.
     """
 
     def __init__(self, base: int, decimals: list) -> None:
@@ -20,7 +20,7 @@ class Converter:
         self._length = 8  # Max number of digits
 
         self.base = int(base)
-        base_val = "base-" + str(base)
+        base_val = f'base-{str(base)}'
 
         self.conversions = []
 
@@ -75,7 +75,7 @@ class Converter:
 
             return base_str
 
-    def _decimal_part_to_base(self, base: int,  num: float) -> str:
+    def _decimal_part_to_base(self, base: int, num: float) -> str:
         """Convert decimal point number to base.
 
         Parameters:
