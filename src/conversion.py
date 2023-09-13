@@ -20,7 +20,7 @@ class Converter:
         self._length = 8  # Max number of digits
 
         self.base = int(base)
-        base_val = f'base-{str(base)}'
+        base_val = f"base-{str(base)}"
 
         self.conversions = []
 
@@ -31,7 +31,7 @@ class Converter:
             self.conversions.append(conversion)
 
     def convert_to_base(self, base: int, num: int or float) -> str:
-        """Converts a base-10 number to another base given.
+        """Converts a base-10 number to the new base given.
 
         Parameters:
             base (int): The base number to convert to.
@@ -49,15 +49,16 @@ class Converter:
                 num = abs(int(num))
             else:
                 num = abs(float(num))
-        else:
-            pass
 
         if float(num) >= 1:
             str_num = str(num).split(".")
 
             int_num = str_num[0]
+
+            # TODO: handle different base case
             base_str += self._int_part_to_binary(int(int_num))
 
+            # TODO: clean up
             try:
                 dec_num = str_num[1]
                 dec_num = float("." + dec_num)
@@ -66,14 +67,12 @@ class Converter:
                 base_str += self._decimal_part_to_base(self.base, float(dec_num))
             except IndexError:
                 pass
-
-            return base_str
         else:
             # Run just decimal conversion
             base_str += "0."
             base_str += self._decimal_part_to_base(self.base, float(num))
 
-            return base_str
+        return base_str
 
     def _decimal_part_to_base(self, base: int, num: float) -> str:
         """Convert decimal point number to base.
