@@ -26,22 +26,23 @@ class Converter:
         for _, num in enumerate(decimals):
             conversion = {}
             conversion["base-10"] = num
-            conversion["base-2"] = self.convert_to_binary(num)
+            conversion["base-2"] = self.convert_to_base(self.base, num)
             self.conversions.append(conversion)
 
-    def convert_to_binary(self, num: int or float) -> str:
-        """Converts a decimal number to its binary representation.
+    def convert_to_base(self, base: int, num: int or float) -> str:
+        """Converts a base-10 number to another base given.
 
         Parameters:
+            base (int): The base number to convert to.
             num (int or float): The number to be converted.
 
         Returns:
-            bin_str (str): The binary string representation.
+            base_str (str): The base string representation.
         """
-        bin_str = ""
+        base_str = ""
 
         if float(num) < 0:
-            bin_str += "-"
+            base_str += "-"
             num = abs(num)
         else:
             pass
@@ -50,24 +51,24 @@ class Converter:
             str_num = str(num).split(".")
 
             int_num = str_num[0]
-            bin_str += self._int_part_to_binary(int(int_num))
+            base_str += self._int_part_to_binary(int(int_num))
 
             try:
                 dec_num = str_num[1]
                 dec_num = float("." + dec_num)
 
-                bin_str += "."
-                bin_str += self._decimal_part_to_binary(float(dec_num))
+                base_str += "."
+                base_str += self._decimal_part_to_binary(float(dec_num))
             except IndexError:
                 pass
 
-            return bin_str
+            return base_str
         else:
             # Run just decimal conversion
-            bin_str += "0."
-            bin_str += self._decimal_part_to_binary(num)
+            base_str += "0."
+            base_str += self._decimal_part_to_binary(num)
 
-            return bin_str
+            return base_str
 
     def _decimal_part_to_binary(self, num: float) -> str:
         """Convert decimal point number to binary.

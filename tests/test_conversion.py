@@ -20,8 +20,8 @@ class TestConverstion:
         assert converter.conversions[1]["base-2"] == "0.01"
         assert converter.conversions[2]["base-2"] == "0.11"
 
-        assert converter.convert_to_binary(0.2) == "0.00110011"
-        assert converter.convert_to_binary(0.142857) == "0.00100100"
+        assert converter.convert_to_base(2, 0.2) == "0.00110011"
+        assert converter.convert_to_base(2, 0.142857) == "0.00100100"
 
     def test_negativeDecimal(self):
         converter = Converter(2, [-0.5, -0.25, -0.75])
@@ -30,8 +30,8 @@ class TestConverstion:
         assert converter.conversions[1]["base-2"] == "-0.01"
         assert converter.conversions[2]["base-2"] == "-0.11"
 
-        assert converter.convert_to_binary(-0.2) == "-0.00110011"
-        assert converter.convert_to_binary(-0.142857) == "-0.00100100"
+        assert converter.convert_to_base(2, -0.2) == "-0.00110011"
+        assert converter.convert_to_base(2, -0.142857) == "-0.00100100"
 
     def test_positiveInteger(self, intConverter):
         assert intConverter.conversions[0]["base-2"] == "1"
