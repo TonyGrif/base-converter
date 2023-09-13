@@ -64,18 +64,18 @@ class Converter:
                 dec_num = float("." + dec_num)
 
                 base_str += "."
-                base_str += self._decimal_part_to_base(self.base, float(dec_num))
+                base_str += self._decimal_part_to_base(base, dec_num)
             except IndexError:
                 pass
         else:
             # Run just decimal conversion
             base_str += "0."
-            base_str += self._decimal_part_to_base(self.base, float(num))
+            base_str += self._decimal_part_to_base(base, float(num))
 
         return base_str
 
     def _decimal_part_to_base(self, base: int, num: float) -> str:
-        """Convert decimal point number to base.
+        """Convert decimal point number to the given base.
 
         Parameters:
             base (int): The base to convert to.
@@ -147,6 +147,7 @@ class Converter:
             table (str): A string containing the table.
         """
         base_val = "base-" + str(self.base)
+        # TODO: fix this spacing for base-11+ numbers
         spacing = self._length + 3
         table = ""
 
