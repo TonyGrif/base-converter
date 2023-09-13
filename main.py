@@ -32,7 +32,7 @@ def main():
 
     args = parser.parse_args()
 
-    converter = Converter(args.decNum)
+    converter = Converter(args.baseNum, args.decNum)
 
     print(converter.output())
 

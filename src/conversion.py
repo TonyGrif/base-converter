@@ -2,20 +2,24 @@
 
 
 class Converter:
-    """Responsible for converting a decimal input to binary.
+    """Responsible for converting a base-10 input to the base given.
 
     Attributes:
+        base (int): The base to convert to.
         conversions (list): A list of dictionaries of conversions.
             This contains [base-10] and [base-2] fields.
     """
 
-    def __init__(self, decimals: list) -> None:
+    def __init__(self, base: int, decimals: list) -> None:
         """Constructor for the Converter class.
 
         Parameters:
+            base (int): The base to convert to.
             decimals (list): List of decimals to be converted.
         """
         self._length = 8  # Max number of digits
+
+        self.base = int(base)
 
         self.conversions = []
 
