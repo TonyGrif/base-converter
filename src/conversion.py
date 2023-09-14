@@ -58,7 +58,6 @@ class Converter:
             # TODO: handle different base case
             base_str += self._int_part_to_binary(int(int_num))
 
-            # TODO: clean up
             try:
                 dec_num = str_num[1]
                 dec_num = float("." + dec_num)
@@ -157,11 +156,14 @@ class Converter:
         table += "| " + "-" * spacing + " | " + "-" * spacing + " |" + "\n"
 
         for conversion in self.conversions:
+            base_conversion = conversion[base_val]
+            if len(str(base_conversion)) > self._length:
+                base_conversion = str(base_conversion[0:self._length])
             table += (
                 "| "
                 + str(conversion["base-10"]).center(spacing)
                 + " | "
-                + str(conversion[base_val]).center(spacing)
+                + str(base_conversion).center(spacing)
                 + " |"
                 + "\n"
             )

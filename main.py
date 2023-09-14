@@ -3,10 +3,10 @@
 """The main module for the decimal-to-base converter program.
 
 This program allows the user to input a non-zero base to convert
-to and a non-zero amount of real numbers to convert to their chosen
+to and a non-zero amount of real, decimal numbers to convert to their chosen
 base equivalent. It is assumed that the input is, in fact, real numbers.
 
-This file can be run as `./main.py [-h] args [args ...]`
+This file can be run as `./main.py [-h] base numbers [numbers ...]`
 """
 
 
@@ -21,7 +21,7 @@ def main():
     parser = argparse.ArgumentParser(
         prog="Base-10 to Base-X Converter",
         description="Script to convert decimal numbers to another base.",
-        usage="./main.py [-h] args [args ...]",
+        usage="./main.py [-h] base numbers [numbers ...]",
     )
 
     parser.add_argument("baseNum", help="Base to convert to.")
