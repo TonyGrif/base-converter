@@ -2,12 +2,12 @@
 
 
 class Converter:
-    """Responsible for converting a base-10 input to the base given.
+    """Responsible for converting a base-10 input to the new base given.
 
     Attributes:
         base (int): The base to convert to.
         conversions (list): A list of dictionaries of conversions.
-            This contains [base-10] and [base-{x}] fields.
+            This contains [base-10] and [base-{base}] fields.
     """
 
     def __init__(self, base: int, decimals: list) -> None:
@@ -20,7 +20,7 @@ class Converter:
         self._length = 8  # Max number of digits
 
         self.base = int(base)
-        base_val = "base-" + str(base)
+        base_val = f"base-{str(base)}"
 
         self.conversions = []
 
@@ -31,7 +31,7 @@ class Converter:
             self.conversions.append(conversion)
 
     def convert_to_base(self, base: int, num: int or float) -> str:
-        """Converts a base-10 number to another base given.
+        """Converts a base-10 number to the new base given.
 
         Parameters:
             base (int): The base number to convert to.
@@ -49,13 +49,13 @@ class Converter:
                 num = abs(int(num))
             else:
                 num = abs(float(num))
-        else:
-            pass
 
         if float(num) >= 1:
             str_num = str(num).split(".")
 
             int_num = str_num[0]
+
+            # TODO: handle different base case
             base_str += self._int_part_to_binary(int(int_num))
 
             try:
@@ -63,20 +63,18 @@ class Converter:
                 dec_num = float("." + dec_num)
 
                 base_str += "."
-                base_str += self._decimal_part_to_base(self.base, float(dec_num))
+                base_str += self._decimal_part_to_base(base, dec_num)
             except IndexError:
                 pass
-
-            return base_str
         else:
             # Run just decimal conversion
             base_str += "0."
-            base_str += self._decimal_part_to_base(self.base, float(num))
+            base_str += self._decimal_part_to_base(base, float(num))
 
-            return base_str
+        return base_str
 
-    def _decimal_part_to_base(self, base: int,  num: float) -> str:
-        """Convert decimal point number to base.
+    def _decimal_part_to_base(self, base: int, num: float) -> str:
+        """Convert decimal point number to the given base.
 
         Parameters:
             base (int): The base to convert to.
@@ -140,14 +138,15 @@ class Converter:
 
         This table will be formatted as such:
 
-        | Base-10 | Base-2 |
+        | Base-10 | Base-X |
         | ------- | ------ |
-        |  {Dec}  |  {Bin} |
+        |  {Dec}  |  {Num} |
 
         Returns:
             table (str): A string containing the table.
         """
         base_val = "base-" + str(self.base)
+        # TODO: fix this spacing for base-11+ numbers
         spacing = self._length + 3
         table = ""
 
@@ -157,11 +156,14 @@ class Converter:
         table += "| " + "-" * spacing + " | " + "-" * spacing + " |" + "\n"
 
         for conversion in self.conversions:
+            base_conversion = conversion[base_val]
+            if len(str(base_conversion)) > self._length:
+                base_conversion = str(base_conversion[0:self._length])
             table += (
                 "| "
                 + str(conversion["base-10"]).center(spacing)
                 + " | "
-                + str(conversion[base_val]).center(spacing)
+                + str(base_conversion).center(spacing)
                 + " |"
                 + "\n"
             )
