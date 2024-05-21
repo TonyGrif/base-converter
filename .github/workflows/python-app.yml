@@ -36,7 +36,7 @@ jobs:
         poetry-version: ${{ matrix.poetry-version }}
     - name: Install Dependencies
       run: |
-        poetry install tox
+        poetry install --only test
     - name: Test with Tox and PyTest
       run: |
         poetry run tox
