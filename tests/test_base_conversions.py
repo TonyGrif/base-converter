@@ -1,7 +1,7 @@
 import pytest
 
 
-from conversion import Converter
+from src.conversion import Converter
 
 
 @pytest.fixture

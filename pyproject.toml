@@ -1,0 +1,44 @@
+[tool.poetry]
+name = "base-converter"
+version = "0.1.0"
+description = "Convert decimal integers and floats to a new base equivalent"
+authors = ["TonyGrif <TonyGriffin2000@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [
+    {include = "src"},
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.2.1"
+pytest-cov = "^5.0.0"
+tox = "^4.15.0"
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.10.0"
+black = "^24.4.2"
+isort = "^5.13.2"
+pylint = "^3.2.2"
+ruff = "^0.4.4"
+flake8-pyproject = "^1.2.3"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+log_cli = "True"
+
+[tool.mypy]
+files = ["src"]
+
+[tool.isort]
+profile = "black"
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203", "E701"]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
