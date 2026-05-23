@@ -1,7 +1,7 @@
 import pytest
 
 
-from src.conversion import Converter
+from src import Converter
 
 
 @pytest.fixture
@@ -10,12 +10,12 @@ def converter():
 
 
 @pytest.fixture
-def intConverter():
+def int_converter():
     return Converter(2, [1, 2, 10, 16, 17])
 
 
-class TestBinaryConverstion:
-    def test_positiveDecimal(self, converter):
+class TestBinaryConversion:
+    def test_positive_decimal(self, converter):
         assert converter.conversions[0]["base-2"] == "0.1"
         assert converter.conversions[1]["base-2"] == "0.01"
         assert converter.conversions[2]["base-2"] == "0.11"
@@ -23,7 +23,7 @@ class TestBinaryConverstion:
         assert converter.convert_to_base(2, 0.2) == "0.00110011"
         assert converter.convert_to_base(2, 0.142857) == "0.00100100"
 
-    def test_negativeDecimal(self):
+    def test_negative_decimal(self):
         converter = Converter(2, [-0.5, -0.25, -0.75])
 
         assert converter.conversions[0]["base-2"] == "-0.1"
@@ -33,14 +33,14 @@ class TestBinaryConverstion:
         assert converter.convert_to_base(2, -0.2) == "-0.00110011"
         assert converter.convert_to_base(2, -0.142857) == "-0.00100100"
 
-    def test_positiveInteger(self, intConverter):
-        assert intConverter.conversions[0]["base-2"] == "1"
-        assert intConverter.conversions[1]["base-2"] == "10"
-        assert intConverter.conversions[2]["base-2"] == "1010"
-        assert intConverter.conversions[3]["base-2"] == "10000"
-        assert intConverter.conversions[4]["base-2"] == "10001"
+    def test_positive_integer(self, int_converter):
+        assert int_converter.conversions[0]["base-2"] == "1"
+        assert int_converter.conversions[1]["base-2"] == "10"
+        assert int_converter.conversions[2]["base-2"] == "1010"
+        assert int_converter.conversions[3]["base-2"] == "10000"
+        assert int_converter.conversions[4]["base-2"] == "10001"
 
-    def test_negativeInteger(self):
+    def test_negative_integer(self):
         converter = Converter(2, [-1, -2, -10, -16, -17])
 
         assert converter.conversions[0]["base-2"] == "-1"
@@ -59,17 +59,21 @@ class TestBinaryConverstion:
         assert converter.conversions[3]["base-2"] == "-10000.1"
         assert converter.conversions[4]["base-2"] == "-10001.01"
 
-    def test_output(self, converter, intConverter):
+    def test_length(self):
+        assert Converter(2, [0.2], length=4).conversions[0]["base-2"] == "0.0011"
+        assert Converter(2, [0.2], length=2).conversions[0]["base-2"] == "0.00"
+
+    def test_output(self, converter, int_converter):
         assert "Base 10" in converter.output()
         assert "Base 2" in converter.output()
 
-        assert "Base 10" in intConverter.output()
-        assert "Base 2" in intConverter.output()
+        assert "Base 10" in int_converter.output()
+        assert "Base 2" in int_converter.output()
 
         for conversion in converter.conversions:
             assert str(conversion["base-10"]) in converter.output()
             assert str(conversion["base-2"]) in converter.output()
 
-        for conversion in intConverter.conversions:
-            assert str(conversion["base-10"]) in intConverter.output()
-            assert str(conversion["base-2"]) in intConverter.output()
+        for conversion in int_converter.conversions:
+            assert str(conversion["base-10"]) in int_converter.output()
+            assert str(conversion["base-2"]) in int_converter.output()

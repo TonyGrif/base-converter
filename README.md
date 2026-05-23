@@ -13,7 +13,7 @@ Invalid input will not be checked for and will result in undefined behavior.
 When this program is run with `./main.py 2 0.25 -0.142857 0.75 0.8`, the following output will be created:
 
 ```
-|   Base 10   |    Base 2   | 
+|   Base 10   |    Base 2   |
 | ----------- | ----------- |
 |     0.25    |     0.01    |
 |  -0.142857  | -0.00100100 |
@@ -24,7 +24,7 @@ When this program is run with `./main.py 2 0.25 -0.142857 0.75 0.8`, the followi
 When this program is run with `./main.py 60 0.25 -0.142857 0.75 0.8`, the following output will be created:
 
 ```
-|   Base 10   |   Base 60   | 
+|   Base 10   |   Base 60   |
 | ----------- | ----------- |
 |     0.25    |     0.15    |
 |  -0.142857  |   -0.83417  |

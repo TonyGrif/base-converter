@@ -1,7 +1,7 @@
 import pytest
 
 
-from src.conversion import Converter
+from src import Converter
 
 
 @pytest.fixture
@@ -21,7 +21,10 @@ def sixty_convert(dec_nums):
 
 class TestBaseConversions:
     def test_positive_decimal(self, eight_convert, sixty_convert):
-        # TODO: asserts for eight
+        assert eight_convert.conversions[0]["base-8"] == "0.4"
+        assert eight_convert.conversions[1]["base-8"] == "0.2"
+        assert eight_convert.conversions[2]["base-8"] == "0.6"
+        assert eight_convert.conversions[3]["base-8"] == "0.63146314"
 
         assert sixty_convert.conversions[0]["base-60"] == "0.30"
         assert sixty_convert.conversions[1]["base-60"] == "0.15"
@@ -29,30 +32,60 @@ class TestBaseConversions:
         assert sixty_convert.conversions[3]["base-60"] == "0.48"
 
     def test_negative_decimal(self, dec_nums):
-        #TODO: asserts for eight
+        neg_nums = [-num for num in dec_nums]
 
-        neg_nums = []
-        for num in dec_nums:
-            neg_nums.append(-num)
+        neg_eight = Converter(8, neg_nums)
+        assert neg_eight.conversions[0]["base-8"] == "-0.4"
+        assert neg_eight.conversions[1]["base-8"] == "-0.2"
+        assert neg_eight.conversions[2]["base-8"] == "-0.6"
+        assert neg_eight.conversions[3]["base-8"] == "-0.63146314"
 
         neg_sixty = Converter(60, neg_nums)
-
         assert neg_sixty.conversions[0]["base-60"] == "-0.30"
         assert neg_sixty.conversions[1]["base-60"] == "-0.15"
         assert neg_sixty.conversions[2]["base-60"] == "-0.45"
         assert neg_sixty.conversions[3]["base-60"] == "-0.48"
 
     def test_positive_integer(self):
-        pass
+        eight_int = Converter(8, [1, 8, 64, 15])
+        assert eight_int.conversions[0]["base-8"] == "1"
+        assert eight_int.conversions[1]["base-8"] == "10"
+        assert eight_int.conversions[2]["base-8"] == "100"
+        assert eight_int.conversions[3]["base-8"] == "17"
+
+        sixty_int = Converter(60, [1, 60, 3600])
+        assert sixty_int.conversions[0]["base-60"] == "1"
+        assert sixty_int.conversions[1]["base-60"] == "10"
+        assert sixty_int.conversions[2]["base-60"] == "100"
 
     def test_negative_integer(self):
-        pass
+        eight_int = Converter(8, [-1, -8, -64, -15])
+        assert eight_int.conversions[0]["base-8"] == "-1"
+        assert eight_int.conversions[1]["base-8"] == "-10"
+        assert eight_int.conversions[2]["base-8"] == "-100"
+        assert eight_int.conversions[3]["base-8"] == "-17"
+
+        sixty_int = Converter(60, [-1, -60, -3600])
+        assert sixty_int.conversions[0]["base-60"] == "-1"
+        assert sixty_int.conversions[1]["base-60"] == "-10"
+        assert sixty_int.conversions[2]["base-60"] == "-100"
 
     def test_floating_point(self):
-        pass
+        eight_float = Converter(8, [1.5, 8.25])
+        assert eight_float.conversions[0]["base-8"] == "1.4"
+        assert eight_float.conversions[1]["base-8"] == "10.2"
+
+        sixty_float = Converter(60, [1.5])
+        assert sixty_float.conversions[0]["base-60"] == "1.30"
 
     def test_output(self, eight_convert, sixty_convert):
-        # TODO: asserts for eight
+        eight_str = eight_convert.output()
+        assert "Base 10" in eight_str
+        assert "Base 8" in eight_str
+
+        for conversion in eight_convert.conversions:
+            assert str(conversion["base-10"]) in eight_str
+            assert str(conversion["base-8"]) in eight_str
 
         sixty_str = sixty_convert.output()
         assert "Base 10" in sixty_str
@@ -61,5 +94,3 @@ class TestBaseConversions:
         for conversion in sixty_convert.conversions:
             assert str(conversion["base-10"]) in sixty_str
             assert str(conversion["base-60"]) in sixty_str
-
-
