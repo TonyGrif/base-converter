@@ -10,7 +10,6 @@ base equivalent. It is assumed that the input is, in fact, real numbers.
 
 import argparse
 
-
 from src import Converter
 
 
@@ -27,8 +26,11 @@ def main():
     )
 
     parser.add_argument(
-        "-r", "--round", type=int, default=8,
-        help="Maximum number of decimal points allowed for in the output (default: 8)"
+        "-r",
+        "--round",
+        type=int,
+        default=8,
+        help="Maximum number of decimal points allowed for in the output (default: 8)",
     )
 
     args = parser.parse_args()

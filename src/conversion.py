@@ -13,7 +13,9 @@ class Converter:
         length: Maximum number of fractional digits in the output
     """
 
-    def __init__(self, base: int, decimals: list[Union[int, float]], length: int = 8) -> None:
+    def __init__(
+        self, base: int, decimals: list[Union[int, float]], length: int = 8
+    ) -> None:
         """Constructor for the Converter class
 
         Parameters:
@@ -133,10 +135,18 @@ class Converter:
         base_header = f"Base {self.base}"
         dec_header = "Base 10"
 
-        col1 = max(len(dec_header), max(len(str(c["base-10"])) for c in self.conversions)) + 2
-        col2 = max(len(base_header), max(len(str(c[base_val])) for c in self.conversions)) + 2
+        col1 = (
+            max(len(dec_header), max(len(str(c["base-10"])) for c in self.conversions))
+            + 2
+        )
+        col2 = (
+            max(len(base_header), max(len(str(c[base_val])) for c in self.conversions))
+            + 2
+        )
 
-        table = "| " + dec_header.center(col1) + " | " + base_header.center(col2) + " |\n"
+        table = (
+            "| " + dec_header.center(col1) + " | " + base_header.center(col2) + " |\n"
+        )
         table += "| " + "-" * col1 + " | " + "-" * col2 + " |\n"
 
         for conversion in self.conversions:
