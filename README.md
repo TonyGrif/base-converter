@@ -1,14 +1,11 @@
 # Decimal to Base-X Converter 
-A python script to convert decimal (base-10) integers and floats to their base-x equivalent.
+Python script to convert decimal (base-10) integers and floats to their base-x equivalent.
 
 ## Requirements
-* [Python 3.8+](https://www.python.org/)
+* [Python 3.9+](https://www.python.org/)
 
 ## Running Instructions
-This program can be run with the following command: `./main.py [args]` in which args is a non-zero base number and a non-zero amount of real numbers. The real-numbers input is limited to -1 (exclusive) to 1 (exclusive). 
-
-If this program is run without any arguments, the following usage error message will be outputted:
-`usage: ./main.py [-h] base numbers [numbers ...]`
+This program can be run with the following command: `./main.py [args]` in which args is a non-zero base number and a non-zero amount of real numbers (integers or floats).
 
 Invalid input will not be checked for and will result in undefined behavior.
 
