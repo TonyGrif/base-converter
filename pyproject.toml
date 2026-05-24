@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "base-converter"
-version = "0.1.0"
+version = "1.0.0"
 description = "Convert decimal integers and floats to a new base equivalent"
 authors = ["TonyGrif <TonyGriffin2000@gmail.com>"]
 license = "MIT"
