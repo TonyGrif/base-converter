@@ -25,6 +25,11 @@ pylint = "^3.3"
 ruff = "^0.15"
 flake8-pyproject = "^1.2"
 
+[tool.poetry.group.docs.dependencies]
+sphinx = ">=7.0"
+furo = "^2025.12.19"
+sphinx-copybutton = "^0.5.2"
+
 [tool.tox]
 requires = ["tox>=4"]
 env_list = ["py39", "py310", "py311", "py312", "py313"]

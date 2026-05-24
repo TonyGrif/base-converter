@@ -1,6 +1,7 @@
 """Base converter library for converting base-10 numbers to any base
 
-Usage:
+Example::
+
     from src import Converter
 
     converter = Converter(base=2, decimals=[0.5, 1.5, 10])

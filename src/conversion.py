@@ -122,11 +122,11 @@ class Converter:
     def output(self) -> str:
         """Returns a formatted table to the user with the conversions
 
-        This table will be formatted as such:
+        This table will be formatted as such::
 
-        | Base-10 | Base-X |
-        | ------- | ------ |
-        |  {Dec}  |  {Num} |
+            | Base-10 | Base-X |
+            | ------- | ------ |
+            |  {Dec}  |  {Num} |
 
         Returns:
             table: A string containing the table

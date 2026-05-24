@@ -31,3 +31,47 @@ When this program is run with `./main.py 60 0.25 -0.142857 0.75 0.8`, the follow
 |     .75     |     0.45    |
 |     0.8     |     0.48    |
 ```
+
+## Development
+Install all dependency groups with:
+
+```bash
+poetry install --with test,dev,docs
+```
+
+### Testing
+Run the test suite with [pytest](https://pytest.org):
+
+```bash
+poetry run pytest --cov
+```
+
+Run tests across all supported Python versions with [tox](https://tox.wiki):
+
+```bash
+poetry run tox
+```
+
+### Linting & Formatting
+```bash
+poetry run black .          # Format
+poetry run isort .          # Sort Imports
+poetry run ruff check .     # Lint
+poetry run flake8           # Additional Lint Checks
+poetry run mypy             # Type Checking
+```
+
+### Documentation
+Build the HTML API docs with [Sphinx](https://www.sphinx-doc.org):
+
+```bash
+poetry run make -C docs html
+```
+
+The output is written to `docs/_build/html/`.
+
+To remove the build artifacts:
+
+```bash
+poetry run make -C docs clean
+```
