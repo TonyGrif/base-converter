@@ -1,8 +1,5 @@
 """This module holds the Converter class for base conversions"""
 
-from typing import Union
-
-
 class Converter:
     """Responsible for converting a base-10 input to the new given base
 
@@ -14,7 +11,7 @@ class Converter:
     """
 
     def __init__(
-        self, base: int, decimals: list[Union[int, float]], length: int = 8
+        self, base: int, decimals: list[int | float], length: int = 8
     ) -> None:
         """Constructor for the Converter class
 
@@ -31,12 +28,12 @@ class Converter:
         self.conversions = []
 
         for num in decimals:
-            conversion: dict[str, Union[int, float, str]] = {}
+            conversion: dict[str, int | float | str] = {}
             conversion["base-10"] = num
             conversion[base_val] = self.convert_to_base(self.base, num)
             self.conversions.append(conversion)
 
-    def convert_to_base(self, base: int, num: Union[int, float]) -> str:
+    def convert_to_base(self, base: int, num: int | float) -> str:
         """Converts a base-10 number to the new base given
 
         Parameters:

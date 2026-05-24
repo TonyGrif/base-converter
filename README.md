@@ -2,7 +2,7 @@
 Python script to convert decimal (base-10) integers and floats to their base-x equivalent.
 
 ## Requirements
-* [Python 3.9+](https://www.python.org/)
+* [Python 3.10+](https://www.python.org/)
 
 ## Running Instructions
 This program can be run with the following command: `./main.py [args]` in which args is a non-zero base number and a non-zero amount of real numbers (integers or floats).
